@@ -5,6 +5,7 @@ plugins {
     `java-library`
     id("io.freefair.aspectj") version "8.13.1"
     id("org.assertj.generator") version "1.1.1" apply false
+    id("maven-publish")
 }
 
 version = "0.1.0"
@@ -48,4 +49,25 @@ java {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+subprojects {
+    apply(plugin = "maven-publish")
+    configure<PublishingExtension> {
+        repositories {
+            maven {
+                name = "ObserverLibrary"
+                url = uri("https://maven.pkg.github.com/soumyarm88/observer")
+                credentials {
+                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+                }
+            }
+        }
+        publications {
+            register<MavenPublication>("gpr") {
+                from(components["java"])
+            }
+        }
+    }
 }
