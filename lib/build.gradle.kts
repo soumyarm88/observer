@@ -8,9 +8,6 @@ plugins {
     id("maven-publish")
 }
 
-group = "tech.soumyarm88.lib"
-version = "1.0"
-
 tasks.jar {
     manifest {
         attributes(mapOf(
@@ -57,7 +54,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "tech.soumyarm88.lib"
             artifactId = "observer"
-            version = "1.0"
+            version = "1.0.1"
 
             from(components["java"])
         }
