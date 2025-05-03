@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "tech.soumyarm88.lib"
-version = "0.1.0"
+version = "1.0"
 
 tasks.jar {
     manifest {

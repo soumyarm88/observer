@@ -8,9 +8,4 @@ A java library that provides some logging features using AOP.
 
 ## Getting Started
 
-### Clone the Repository
-
-```bash
-git clone https://github.com/soumyarm88/blockchain.git
-cd blockchain
-```
+[TODO]
