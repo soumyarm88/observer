@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 @Aspect
 public class ExecutionTimeLogger {
 
+    private ExecutionTimeLogger() { }
+
     private static final Logger logger = LoggerFactory.getLogger(ExecutionTimeLogger.class);
 
     /**

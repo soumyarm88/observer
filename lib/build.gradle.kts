@@ -27,17 +27,17 @@ dependencies {
     api(libs.commons.math3)
     implementation(libs.guava)
 
-    implementation("org.aspectj:aspectjrt:1.9.+")
-    implementation("org.aspectj:aspectjweaver:1.9.+")
+    implementation("org.aspectj:aspectjrt:1.9.24")
+    implementation("org.aspectj:aspectjweaver:1.9.24")
 
-    implementation("org.slf4j:slf4j-api:2.0.+")
-    testImplementation("org.slf4j:slf4j-simple:2.0.+")
+    implementation("org.slf4j:slf4j-api:2.0.16")
+    testImplementation("org.slf4j:slf4j-simple:2.0.17")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    testImplementation("org.assertj:assertj-core:3.24.+")
+    testImplementation("org.assertj:assertj-core:3.27.3")
 }
 
 java {
@@ -52,22 +52,23 @@ tasks.test {
     useJUnitPlatform()
 }
 
-subprojects {
-    apply(plugin = "maven-publish")
-    configure<PublishingExtension> {
-        repositories {
-            maven {
-                name = "ObserverLibrary"
-                url = uri("https://maven.pkg.github.com/soumyarm88/observer")
-                credentials {
-                    username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-                }
-            }
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "tech.soumyarm88.lib"
+            artifactId = "observer"
+            version = "1.0"
+
+            from(components["java"])
         }
-        publications {
-            register<MavenPublication>("gpr") {
-                from(components["java"])
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/soumyarm88/observer")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
             }
         }
     }
