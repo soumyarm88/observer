@@ -30,6 +30,7 @@ public class ExecutionTimeLogger {
      */
     @Around("@annotation(tech.soumyarm88.lib.observer.LogExecutionTime) && execution(* *(..))")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("Entering logExecutionTime");
         long startTimeNano = System.nanoTime();
         String methodName = joinPoint.getSignature().toShortString();
         try {

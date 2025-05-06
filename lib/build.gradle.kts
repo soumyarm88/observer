@@ -54,7 +54,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "tech.soumyarm88.lib"
             artifactId = "observer"
-            version = "1.0.2"
+            version = "1.0.3"
 
             from(components["java"])
         }

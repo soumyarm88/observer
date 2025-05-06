@@ -18,6 +18,8 @@ class ExecutionTimeLoggerTest {
             assertThat(classUnderTest.someMethod()).isTrue();
         });
 
+        System.out.println(log);
+
         assertThat(log).contains("SomeClass.someMethod() executed in");
     }
 
@@ -29,6 +31,8 @@ class ExecutionTimeLoggerTest {
                     .isThrownBy(() -> classUnderTest.someOtherMethod())
                     .withMessage("Something went wrong");
         });
+
+        System.out.println(log);
 
         assertThat(log).contains("SomeClass.someOtherMethod() executed in");
     }
